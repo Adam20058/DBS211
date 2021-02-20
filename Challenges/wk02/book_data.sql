@@ -53,7 +53,26 @@
 -- 	REPLACE (title, 'e', 3) AS 'replace title'
 -- FROM books;
 
+-- SELECT
+-- 	SUBSTRING(REPLACE(title, 'e', '3'), 1, 10)
+-- 	AS 'Weird String'
+-- FROM books;
+
+-- SELECT
+-- 	REVERSE(author_fname)
+-- FROM books;
+
+-- Eggers is 6 characters long
+
+-- SELECT
+-- 	CONCAT_WS(' ', author_fname, 'is', CHAR_LENGTH(author_fname), 'characters long' )
+-- FROM books;
+
+-- SELECT
+-- 	UPPER(title)
+-- FROM books;
+
 SELECT
-	SUBSTRING(REPLACE(title, 'e', '3'), 1, 10)
-	AS 'Weird String'
+	UPPER(CONCAT_WS(' ', 'My favourtie book is', title))
+	AS 'Review'
 FROM books;
