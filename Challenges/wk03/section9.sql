@@ -232,7 +232,7 @@
 --   author_lname;
 
 -- *************************************************************************************************************************
--- ****                        EXCERCISE 6: SUM Function                                                                ****
+-- ****                                       EXCERCISE 6: SUM Function                                                 ****
 -- *************************************************************************************************************************
 
 -- 1. Return the sum of all pages in the entire database?
@@ -244,12 +244,72 @@
 
 -- 2. Sum all pages each author has written?
 
+-- SELECT
+--   author_fname,
+--   author_lname,
+--   SUM(pages) AS 'No. of pages'
+-- FROM
+--   books
+-- GROUP BY 
+--   author_fname,
+--   author_lname;
+
+-- *************************************************************************************************************************
+-- ****                                           EXCERCISE 7: AVG                                                      ****
+-- *************************************************************************************************************************
+
+-- 1. Calculate the average release year of all books?
+
+-- SELECT
+--   AVG(released_year)
+-- FROM
+--   books;
+
+-- 2. Calculate the average page count of all books?
+
+-- SELECT
+--   AVG(pages)
+-- FROM
+--   books;
+
+-- 3. Calculate the average stock quantity for books released in the same year?
+-- SELECT
+--   AVG(stock_quantity) AS 'Avg Stock quantity',
+--   released_year AS 'Released year'
+-- FROM
+--   books
+-- GROUP BY
+--   released_year
+-- ORDER By
+--   released_year;
+
+-- 3. Calculate the average pages by every author in the database?
 SELECT
-  author_fname,
-  author_lname,
-  SUM(pages)
+  author_fname AS 'First name',
+  author_lname AS 'Last name',
+  AVG(pages) AS 'AVG Pages'
 FROM
   books
-GROUP BY 
+GROUP By
   author_fname,
-  author_lname;
+  author_lname
+ORDER By
+  AVG(pages) DESC;
+
+-- 4. Answer question 3 but concat first name and last name as 'author'?
+SELECT
+  CONCAT_WS
+  (
+    ' ',
+    author_fname,
+    author_lname
+  ) AS 'Author',
+  AVG(pages)
+FROM
+  books
+GROUP BY
+  author_fname,
+  author_lname
+ORDER BY
+  AVG(pages) DESC;
+
